@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Box, Flex, Typography, IconButton, inputFocusStyle } from '@strapi/design-system';
 import { Earth, Bold, Code, StrikeThrough, Cross } from '@strapi/icons';
-import ReactContentEditable from 'react-contenteditable';
+import ReactContentEditable from './ContentEditable';
 import showdown from 'showdown';
 import { parse, NodeType } from 'node-html-parser';
 
@@ -181,7 +181,8 @@ const Input = ({
 
     const _disabled = Boolean(disabled || false);
 
-    return (
+
+  return (
         <Box>
             {label && (
                 <Flex paddingBottom={1}>
@@ -203,7 +204,7 @@ const Input = ({
             <Flex gap={2}>
                 <ContentEditable
                     // @ts-ignore
-                    innerRef={ref}
+                    ref={ref}
                     html={getHtml(value, markdown)}
                     onPaste={handleOnPaste}
                     onChange={handleOnChange}
