@@ -1,5 +1,5 @@
 {
-    "name": "bold-title-editor",
+    "name": "@sklinet/strapi-plugin-bold-title-editor",
     "version": "1.0.0",
     "description": "A bold title/text editor to accent certain parts",
     "keywords": [],
@@ -46,9 +46,9 @@
         "showdown": "^2.1.0"
     },
     "devDependencies": {
-        "@strapi/sdk-plugin": "^5.2.6",
-        "@strapi/strapi": "^5.0.2",
-        "@strapi/typescript-utils": "^5.0.2",
+        "@strapi/sdk-plugin": "^5.2.7",
+        "@strapi/strapi": "^5.1.1",
+        "@strapi/typescript-utils": "^5.1.1",
         "@types/react": "^18.3.11",
         "@types/react-dom": "^18.3.0",
         "@types/showdown": "^2.0.6",
@@ -60,8 +60,8 @@
         "typescript": "^5.6.2"
     },
     "peerDependencies": {
-        "@strapi/sdk-plugin": "^5.2.6",
-        "@strapi/strapi": "^5.0.2",
+        "@strapi/sdk-plugin": "^5.2.7",
+        "@strapi/strapi": "^5.1.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-router-dom": "^6.26.2",
