@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Box, Flex, Typography, IconButton, inputFocusStyle } from '@strapi/design-system';
-import { Earth, Bold, Code, StrikeThrough, Cross } from '@strapi/icons';
+import { Earth, Bold, Code, Cross, Italic, ArrowClockwise } from '@strapi/icons';
 import ReactContentEditable from './ContentEditable';
 import showdown from 'showdown';
 import { parse, NodeType } from 'node-html-parser';
@@ -145,6 +145,8 @@ const Input = ({
 
     const markdown = !!(attribute.options && attribute.options.output === 'markdown');
 
+    const { enableBold, enableItalic, enableUnderline } = attribute.options;
+
     // Methods.
     const update = (value: any) => {
         onChange({ target: { name, value } });
@@ -181,8 +183,7 @@ const Input = ({
 
     const _disabled = Boolean(disabled || false);
 
-
-  return (
+    return (
         <Box>
             {label && (
                 <Flex paddingBottom={1}>
@@ -211,16 +212,38 @@ const Input = ({
                     onKeyDown={handleOnKeyDown}
                     disabled={_disabled}
                 />
-                <IconButton
-                    label="More actions"
-                    withTooltip={false}
-                    onClick={() => executeCommand('bold')}
-                    disabled={_disabled}
-                >
-                    <Bold />
-                </IconButton>
+                {enableBold && (
+                    <IconButton
+                        label="bold"
+                        withTooltip={false}
+                        onClick={() => executeCommand('bold')}
+                        disabled={_disabled}
+                    >
+                        <Bold />
+                    </IconButton>
+                )}
+                {enableItalic && (
+                    <IconButton
+                        label="italics"
+                        withTooltip={false}
+                        onClick={() => executeCommand('italics')}
+                        disabled={_disabled}
+                    >
+                        <Italic />
+                    </IconButton>
+                )}
+                {enableUnderline && (
+                    <IconButton
+                        label="underline"
+                        withTooltip={false}
+                        onClick={() => executeCommand('underline')}
+                        disabled={_disabled}
+                    >
+                        <Italic />
+                    </IconButton>
+                )}
                 <IconButton label="More actions" withTooltip={false} onClick={handleOnClear} disabled={_disabled}>
-                    <StrikeThrough />
+                    <ArrowClockwise />
                 </IconButton>
                 <IconButton label="More actions" withTooltip={false} onClick={handleOnPreview} disabled={_disabled}>
                     {preview ? <Cross /> : <Code />}

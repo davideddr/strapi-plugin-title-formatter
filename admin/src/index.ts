@@ -30,6 +30,38 @@ export default {
                         },
                         description: "You won't be able to create an entry if this field is empty",
                     },
+                    {
+                        sectionTitle: {
+                            id: `${PLUGIN_ID}.options.advanced.types`,
+                            defaultMessage: 'Input types',
+                        },
+                        items: [
+                            {
+                                name: 'options.enableBold',
+                                type: 'checkbox',
+                                intlLabel: {
+                                    id: `${PLUGIN_ID}.enableBold.label`,
+                                    defaultMessage: 'Bold',
+                                },
+                            },
+                            {
+                                name: 'options.enableItalic',
+                                type: 'checkbox',
+                                intlLabel: {
+                                    id: `${PLUGIN_ID}.enableItalic.label`,
+                                    defaultMessage: 'Italic',
+                                },
+                            },
+                            {
+                                name: 'options.enableUnderline',
+                                type: 'checkbox',
+                                intlLabel: {
+                                    id: `${PLUGIN_ID}.enableUnderline.label`,
+                                    defaultMessage: 'Underline',
+                                },
+                            },
+                        ],
+                    },
                 ],
             },
             components: {
