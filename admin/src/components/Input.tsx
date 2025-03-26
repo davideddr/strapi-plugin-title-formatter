@@ -212,36 +212,30 @@ const Input = ({
                     onKeyDown={handleOnKeyDown}
                     disabled={_disabled}
                 />
-                {enableBold && (
-                    <IconButton
-                        label="bold"
-                        withTooltip={false}
-                        onClick={() => executeCommand('bold')}
-                        disabled={_disabled}
-                    >
-                        <Bold />
-                    </IconButton>
-                )}
-                {enableItalic && (
-                    <IconButton
-                        label="italics"
-                        withTooltip={false}
-                        onClick={() => executeCommand('italics')}
-                        disabled={_disabled}
-                    >
-                        <Italic />
-                    </IconButton>
-                )}
-                {enableUnderline && (
-                    <IconButton
-                        label="underline"
-                        withTooltip={false}
-                        onClick={() => executeCommand('underline')}
-                        disabled={_disabled}
-                    >
-                        <Italic />
-                    </IconButton>
-                )}
+                <IconButton
+                    label="bold"
+                    withTooltip={false}
+                    onClick={() => executeCommand('bold')}
+                    disabled={_disabled}
+                >
+                    <Bold />
+                </IconButton>
+                <IconButton
+                    label="italics"
+                    withTooltip={false}
+                    onClick={() => executeCommand('italics')}
+                    disabled={_disabled}
+                >
+                    <Italic />
+                </IconButton>
+                <IconButton
+                    label="underline"
+                    withTooltip={false}
+                    onClick={() => executeCommand('underline')}
+                    disabled={_disabled}
+                >
+                    <Italic />
+                </IconButton>
                 <IconButton label="More actions" withTooltip={false} onClick={handleOnClear} disabled={_disabled}>
                     <ArrowClockwise />
                 </IconButton>
