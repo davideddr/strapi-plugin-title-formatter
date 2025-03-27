@@ -1,5 +1,6 @@
 {
-    "field.title": "Bold Title Editor",
-    "field.description": "A bold title/text editor to accent certain parts",
-    "field.required-field": "Required field"
+    "field.title": "Title formatter",
+    "field.description": "A title/text editor to accent certain parts",
+    "field.required-field": "Required field",
+    "section.title": "Types of format"
 }

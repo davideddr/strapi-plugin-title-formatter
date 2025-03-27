@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Box, Flex, Typography, IconButton, inputFocusStyle } from '@strapi/design-system';
-import { Earth, Bold, Code, Cross, Italic, ArrowClockwise } from '@strapi/icons';
+import { Earth, Bold, Code, Cross, Italic, ArrowClockwise, Underline } from '@strapi/icons';
 import ReactContentEditable from './ContentEditable';
 import showdown from 'showdown';
 import { parse, NodeType } from 'node-html-parser';
@@ -56,10 +56,10 @@ const executeCommand = (commandId: string, value?: string) => {
     document.execCommand(commandId, false, value);
 };
 
-const reduceParsed = (html: any, bold: boolean = false) => {
+const reduceParsed = (html: any, bold: boolean = false, italic: boolean = false, underline: boolean = false) => {
     return html.childNodes.reduce((a: any, c: any) => {
         if (c.nodeType === NodeType.TEXT_NODE) {
-            return [...a, { type: 'text', text: c.text, bold: !!bold }];
+            return [...a, { type: 'text', text: c.text, bold: !!bold, italic: !!italic, underline: !!underline }];
         }
 
         if (c.nodeType === NodeType.ELEMENT_NODE && c.tagName === 'BR') {
@@ -67,7 +67,14 @@ const reduceParsed = (html: any, bold: boolean = false) => {
         }
 
         if (c.nodeType === NodeType.ELEMENT_NODE && c.childNodes && (c.tagName === 'B' || c.tagName === 'STRONG')) {
-            return [...a, ...reduceParsed(c, true)];
+            return [...a, ...reduceParsed(c, true, false, false)];
+        }
+
+        if (c.nodeType === NodeType.ELEMENT_NODE && c.childNodes && c.tagName === 'I') {
+            return [...a, ...reduceParsed(c, false, true, false)];
+        }
+        if (c.nodeType === NodeType.ELEMENT_NODE && c.childNodes && c.tagName === 'U') {
+            return [...a, ...reduceParsed(c, false, false, true)];
         }
 
         if (c.nodeType === NodeType.ELEMENT_NODE && c.childNodes && c.childNodes.length > 0) {
@@ -88,6 +95,14 @@ const toMarkdown = (parsed: any, clear: any) => {
             return `${a}**${clear ? c.text.replace(/(\n)/gm, '') : c.text}**`;
         }
 
+        if (c.type === 'text' && c.italic && !clear) {
+            return `${a}*${clear ? c.text.replace(/(\n)/gm, '') : c.text}*`;
+        }
+
+        if (c.type === 'text' && c.underline && !clear) {
+            return `${a}<u>${clear ? c.text.replace(/(\n)/gm, '') : c.text}</u>`;
+        }
+
         if (c.type === 'text') {
             return a + (clear ? c.text.replace(/(\n)/gm, '') : c.text);
         }
@@ -104,6 +119,14 @@ const toHtml = (parsed: any, clear: any) => {
 
         if (c.type === 'text' && c.bold && !clear) {
             return `${a}<b>${c.text}</b>`;
+        }
+
+        if (c.type === 'text' && c.italic && !clear) {
+            return `${a}<i>${c.text}</i>`;
+        }
+
+        if (c.type === 'text' && c.underline && !clear) {
+            return `${a}<u>${c.text}</u>`;
         }
 
         if (c.type === 'text') {
@@ -202,6 +225,44 @@ const Input = ({
                     )}
                 </Flex>
             )}
+            <Flex gap={2} paddingBottom={2}>
+                {enableBold && (
+                    <IconButton
+                        label="bold"
+                        withTooltip={false}
+                        onClick={() => executeCommand('bold')}
+                        disabled={_disabled}
+                    >
+                        <Bold />
+                    </IconButton>
+                )}
+                {enableItalic && (
+                    <IconButton
+                        label="italics"
+                        withTooltip={false}
+                        onClick={() => executeCommand('italic')}
+                        disabled={_disabled}
+                    >
+                        <Italic />
+                    </IconButton>
+                )}
+                {enableUnderline && (
+                    <IconButton
+                        label="underline"
+                        withTooltip={false}
+                        onClick={() => executeCommand('underline')}
+                        disabled={_disabled}
+                    >
+                        <Underline />
+                    </IconButton>
+                )}
+                <IconButton label="More actions" withTooltip={false} onClick={handleOnClear} disabled={_disabled}>
+                    <ArrowClockwise />
+                </IconButton>
+                <IconButton label="More actions" withTooltip={false} onClick={handleOnPreview} disabled={_disabled}>
+                    {preview ? <Cross /> : <Code />}
+                </IconButton>
+            </Flex>
             <Flex gap={2}>
                 <ContentEditable
                     // @ts-ignore
@@ -212,36 +273,6 @@ const Input = ({
                     onKeyDown={handleOnKeyDown}
                     disabled={_disabled}
                 />
-                <IconButton
-                    label="bold"
-                    withTooltip={false}
-                    onClick={() => executeCommand('bold')}
-                    disabled={_disabled}
-                >
-                    <Bold />
-                </IconButton>
-                <IconButton
-                    label="italics"
-                    withTooltip={false}
-                    onClick={() => executeCommand('italics')}
-                    disabled={_disabled}
-                >
-                    <Italic />
-                </IconButton>
-                <IconButton
-                    label="underline"
-                    withTooltip={false}
-                    onClick={() => executeCommand('underline')}
-                    disabled={_disabled}
-                >
-                    <Italic />
-                </IconButton>
-                <IconButton label="More actions" withTooltip={false} onClick={handleOnClear} disabled={_disabled}>
-                    <ArrowClockwise />
-                </IconButton>
-                <IconButton label="More actions" withTooltip={false} onClick={handleOnPreview} disabled={_disabled}>
-                    {preview ? <Cross /> : <Code />}
-                </IconButton>
             </Flex>
             {value && preview && (
                 <Box marginTop={2}>
