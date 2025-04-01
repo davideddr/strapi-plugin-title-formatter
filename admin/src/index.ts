@@ -7,17 +7,17 @@ import { prefixPluginTranslations } from './utils/prefixPluginTranslations';
 export default {
   register(app: any) {
     app.customFields.register({
-      name: 'bold-title-editor',
+      name: 'title-formatter',
       pluginId: PLUGIN_ID,
       type: 'string',
       icon: PluginIcon,
       intlLabel: {
         id: getTranslation('field.title'),
-        defaultMessage: 'Bold Title Editor',
+        defaultMessage: 'Title Formatter',
       },
       intlDescription: {
         id: getTranslation('field.description'),
-        defaultMessage: 'A bold title/text editor to accent certain parts',
+        defaultMessage: 'Format the title of your content',
       },
       options: {
         advanced: [

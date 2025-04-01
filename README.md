@@ -1,16 +1,21 @@
-# Strapi plugin Bold title editor
+# Strapi plugin title formatter
 
-A bold title/text editor to accentuate **certain parts** through HTML or Markdown.
+This plugin is a simple text editor that allows you to format your text with **bold**, *italic*, and __underline__ styles. It also provides a preview of the formatted text in both HTML and Markdown formats.
+
+The project is forked from [@SKLINET/strapi-plugin-bold-title-editor](https://github.com/SKLINET/strapi-plugin-bold-title-editor)
 
 ## ✨ Features
 * **Different output options:** choose between HTML and Markdown.
-* **Actions:** accentuate **certain parts**, preview code output and clear text format.
+* **Actions:**
+  * accentuate certain parts (bold, italic, underline)
+  * preview code output
+  * clear text format
 
 ## ⏳ Installation
 
 ```sh
 # Using NPM
-npm install @SKLINET/strapi-plugin-bold-title-editor
+npm install @davideddr/strapi-plugin-title-formatter
 ```
 
 Then, you'll need to build your admin panel:
@@ -23,9 +28,14 @@ yarn build
 npm run build
 ```
 
+## ⚙️ Configuration
+In the field settings, you can choose which type of formatting to enable.
+
+![title formatter config screenshot](./title-formatter-config.png)
+
 ## 🎉 Usage
 
-![bold title editor screenshot](./bold-title-editor.png)
+![title formatter editor screenshot](./title-formatter.png)
 
 ### HTML
 #### React/Next.js
