@@ -2,7 +2,7 @@ import React, { forwardRef, SyntheticEvent, useEffect, useRef, useState } from '
 
 type ContentEditableEvent = React.SyntheticEvent<any, Event> & { target: { value: string } };
 type Modify<T, R> = Pick<T, Exclude<keyof T, keyof R>> & R;
-type DivProps = Modify<React.JSX.IntrinsicElements["div"], { onChange: ((event: ContentEditableEvent) => void) }>;
+type DivProps = Modify<React.JSX.IntrinsicElements['div'], { onChange: (event: ContentEditableEvent) => void }>;
 
 interface Props extends DivProps {
   html: string;
