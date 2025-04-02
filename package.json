@@ -8,6 +8,10 @@
         "name": "Davide Da Rech",
         "url": "https://github.com/davideddr"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/davideddr/strapi-plugin-title-formatter"
+    },
     "type": "commonjs",
     "exports": {
         "./package.json": "./package.json",
