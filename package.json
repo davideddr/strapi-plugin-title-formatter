@@ -1,6 +1,6 @@
 {
     "name": "@davideddr/strapi-plugin-title-formatter",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A title formatter plugin for Strapi that allows you to format titles with bold, italic, and underline styles.",
     "keywords": [],
     "license": "MIT",

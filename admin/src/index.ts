@@ -43,6 +43,7 @@ export default {
                   id: `${PLUGIN_ID}.enableBold.label`,
                   defaultMessage: 'Bold',
                 },
+                defaultValue: true,
               },
               {
                 name: 'options.enableItalic',
@@ -51,6 +52,7 @@ export default {
                   id: `${PLUGIN_ID}.enableItalic.label`,
                   defaultMessage: 'Italic',
                 },
+                defaultValue: true,
               },
               {
                 name: 'options.enableUnderline',
