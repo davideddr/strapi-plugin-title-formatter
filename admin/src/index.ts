@@ -32,7 +32,41 @@ export default {
           },
           {
             sectionTitle: {
-              id: `${PLUGIN_ID}.options.advanced.types`,
+              id: getTranslation('section.settings'),
+              defaultMessage: 'Settings',
+            },
+            items: [
+              {
+                type: 'number',
+                name: 'options.minLength',
+                intlLabel: {
+                  id: getTranslation('field.minLength.label'),
+                  defaultMessage: 'Minimum length',
+                },
+                description: {
+                  id: getTranslation('field.minLength.description'),
+                  defaultMessage: 'Set the minimum length for this field',
+                },
+                defaultValue: 0,
+              },
+              {
+                type: 'number',
+                name: 'options.maxLength',
+                intlLabel: {
+                  id: getTranslation('field.maxLength.label'),
+                  defaultMessage: 'Maximum length',
+                },
+                description: {
+                  id: getTranslation('field.maxLength.description'),
+                  defaultMessage: 'Set the maximum length for this field',
+                },
+                defaultValue: 255,
+              },
+            ],
+          },
+          {
+            sectionTitle: {
+              id: getTranslation('section.formats'),
               defaultMessage: 'Types of format',
             },
             items: [
@@ -40,7 +74,7 @@ export default {
                 name: 'options.enableBold',
                 type: 'checkbox',
                 intlLabel: {
-                  id: `${PLUGIN_ID}.enableBold.label`,
+                  id: getTranslation('field.enableBold.label'),
                   defaultMessage: 'Bold',
                 },
                 defaultValue: true,
@@ -49,7 +83,7 @@ export default {
                 name: 'options.enableItalic',
                 type: 'checkbox',
                 intlLabel: {
-                  id: `${PLUGIN_ID}.enableItalic.label`,
+                  id: getTranslation('field.enableItalic.label'),
                   defaultMessage: 'Italic',
                 },
                 defaultValue: true,
@@ -58,7 +92,7 @@ export default {
                 name: 'options.enableUnderline',
                 type: 'checkbox',
                 intlLabel: {
-                  id: `${PLUGIN_ID}.enableUnderline.label`,
+                  id: getTranslation('field.enableUnderline.label'),
                   defaultMessage: 'Underline',
                 },
               },

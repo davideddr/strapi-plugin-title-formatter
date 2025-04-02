@@ -1,6 +1,14 @@
 {
-    "field.title": "Title formatter",
-    "field.description": "A title/text editor to accent certain parts",
-    "field.required-field": "Required field",
-    "section.title": "Types of format"
+  "field.title": "Title Formatter",
+  "field.description": "Format the title of your content",
+  "field.required-field": "Required field",
+  "section.settings": "Settings",
+  "section.formats": "Types of format",
+  "field.minLength.label": "Minimum length",
+  "field.minLength.description": "Set the minimum length for this field",
+  "field.maxLength.label": "Maximum length",
+  "field.maxLength.description": "Set the maximum length for this field",
+  "field.enableBold.label": "Bold",
+  "field.enableItalic.label": "Italic",
+  "field.enableUnderline.label": "Underline"
 }

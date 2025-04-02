@@ -1,6 +1,14 @@
 {
-    "field.title": "Formatter del titolo",
-    "field.description": "Un editor di titolo/testo per accentuare alcune parti",
-    "field.required-field": "Campo obbligatorio",
-    "section.title": "Tipi di formato"
+  "field.title": "Formattatore di Titoli",
+  "field.description": "Formatta il titolo del tuo contenuto",
+  "field.required-field": "Campo obbligatorio",
+  "section.settings": "Impostazioni",
+  "section.formats": "Tipi di formato",
+  "field.minLength.label": "Lunghezza minima",
+  "field.minLength.description": "Imposta la lunghezza minima per questo campo",
+  "field.maxLength.label": "Lunghezza massima",
+  "field.maxLength.description": "Imposta la lunghezza massima per questo campo",
+  "field.enableBold.label": "Grassetto",
+  "field.enableItalic.label": "Corsivo",
+  "field.enableUnderline.label": "Sottolineato"
 }

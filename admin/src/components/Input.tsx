@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Box, Flex, Typography, IconButton, inputFocusStyle } from '@strapi/design-system';
 import { Earth, Bold, Code, Cross, Italic, ArrowClockwise, Underline } from '@strapi/icons';
@@ -165,15 +165,38 @@ const Input = ({
 }: InputProps) => {
   const ref = useRef();
   const [preview, setPreview] = useState(false);
+  const [validationError, setValidationError] = useState<string | undefined>(undefined);
 
   const markdown = !!(attribute.options && attribute.options.output === 'markdown');
 
-  const { enableBold, enableItalic, enableUnderline } = attribute.options;
+  const { enableBold, enableItalic, enableUnderline, minLength, maxLength } = attribute.options || {};
+
+  const validateLength = (text: string) => {
+    const textLength = text ? text.length : 0;
+
+    if (minLength !== undefined && textLength < minLength) {
+      return `Campo troppo corto (minimo ${minLength} caratteri)`;
+    }
+
+    if (maxLength !== undefined && textLength > maxLength) {
+      return `Campo troppo lungo (massimo ${maxLength} caratteri)`;
+    }
+
+    return undefined;
+  };
 
   // Methods.
   const update = (value: any) => {
+    const validationError = validateLength(value);
+    setValidationError(validationError);
     onChange({ target: { name, value } });
   };
+
+  useEffect(() => {
+    if (value) {
+      setValidationError(validateLength(value));
+    }
+  }, [minLength, maxLength]);
 
   const handleOnPaste = (event: any) => {
     event.preventDefault();
@@ -205,6 +228,9 @@ const Input = ({
   const localized = Boolean(attribute?.pluginOptions?.i18n?.localized || false);
 
   const _disabled = Boolean(disabled || false);
+
+  const showCharacterCount = minLength !== undefined || maxLength !== undefined;
+  const currentLength = value ? value.length : 0;
 
   return (
     <Box>
@@ -264,16 +290,23 @@ const Input = ({
           disabled={_disabled}
         />
       </Flex>
+      {showCharacterCount && (
+        <Flex justifyContent="flex-end" paddingTop={1}>
+          <Typography variant="pi" textColor={validationError ? 'danger600' : 'neutral600'}>
+            {currentLength} {maxLength !== undefined && `/ ${maxLength}`}
+          </Typography>
+        </Flex>
+      )}
       {value && preview && (
         <Box marginTop={2}>
           <Preview>{value}</Preview>
         </Box>
       )}
-      {(error || hint) && (
+      {(error || hint || validationError) && (
         <Box paddingTop={1}>
-          {error ? (
+          {error || validationError ? (
             <Typography variant="pi" textColor="danger600">
-              {error}
+              {error || validationError}
             </Typography>
           ) : (
             <Typography variant="pi" textColor="neutral600">
